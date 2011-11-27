@@ -30,4 +30,8 @@ class Config {
         return json_decode(file_get_contents('../config/' . Config::GetEnvironment() . '.json'), true);
     }
     
+    public static function GetRoutes() {
+        return json_decode(file_get_contents('../config/routes.json'), true);
+    }
+    
 }
