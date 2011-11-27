@@ -1,0 +1,6 @@
+[submodule "IoC"]
+	path = IoC
+	url = git://github.com/Elfet/IoC.git
+[submodule "lib/IoC"]
+	path = lib/IoC
+	url = git://github.com/Elfet/IoC.git

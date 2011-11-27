@@ -2,9 +2,17 @@
 
 namespace YAMVCF;
 
-class Router {
+class Router implements IRouter {
     
-    public static function GetRelativeActionUri($requestUri, $scriptName) {
+    private $mConfig;
+    
+    public function __construct(IConfig $config) {
+        
+        $this->mConfig = $config;
+        
+    }
+    
+    public function GetRelativeActionUri($requestUri, $scriptName) {
         
         $baseUri = Router::getBaseUri($scriptName);
         
@@ -12,14 +20,14 @@ class Router {
         
     }
     
-    public static function getBaseUri($scriptName) {
+    public function getBaseUri($scriptName) {
         
         return dirname($scriptName);
     }
     
-    public static function Route($relativeActionUri, $routes) {
+    public function Route($relativeActionUri) {
         
-        foreach ($routes as $uri => $params) {
+        foreach ($this->mConfig->getRoutes() as $uri => $params) {
             
             // Clones the params to new array
             $regexes = $params;
@@ -53,7 +61,7 @@ class Router {
     }
     
     // Bootstraps controller and calls for action :-)
-    public static function Bootstrap($routeParams) {
+    public function Bootstrap($routeParams) {
         
         $controllerName = $routeParams['controller'];
         $actionName = $routeParams['action'];

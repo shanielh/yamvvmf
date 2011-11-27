@@ -4,18 +4,20 @@ namespace YAMVCF;
 // Use the autoloader
 require_once('../lib/YAMVCF/autoloader.php');
 
-// Bootstrap
-$relativeUri = Router::GetRelativeActionUri($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']);
+$container = Container::getInstance();
 
-$routes = Config::GetRoutes();
+$router = $container->getObject('YAMVCF\IRouter');
+
+// Bootstrap
+$relativeUri = $router->GetRelativeActionUri($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']);
 
 try
 {
-    $choosenRoute = Router::Route($relativeUri, $routes);
-    Router::Bootstrap($choosenRoute);
+    $choosenRoute = $router->route($relativeUri);
+    $router->bootstrap($choosenRoute);
 }
 // Fallback to 403, 404, 500.
 catch (Exceptions\RedirectingException $e)
 {
-    Router::Bootstrap($e->GetRouterParams());
+    $router->bootstrap($e->GetRouterParams());
 }
