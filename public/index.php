@@ -1,0 +1,14 @@
+<?php
+namespace YAMVCF;
+
+// Use the autoloader
+require_once('../lib/YAMVCF/autoloader.php');
+
+// Bootstrap
+$relativeUri = Router::GetRelativeActionUri($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']);
+
+$routes = json_decode(file_get_contents('../config/routes.json'), true);
+
+$choosenRoute = Router::Route($relativeUri, $routes);
+
+Router::Bootstrap($choosenRoute);

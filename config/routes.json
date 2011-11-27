@@ -1,0 +1,9 @@
+{
+
+  "index/id" : {
+    "id" : "\\d+",
+    "controller" : "index",
+    "action" : "getById"
+  }
+
+}

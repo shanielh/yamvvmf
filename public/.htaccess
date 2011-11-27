@@ -1,0 +1,18 @@
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+
+RewriteBase /~shanielharrar/github/yamvcf/public
+
+#
+# Development Rules
+#
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*$ index.php [L]
+
+#
+# Production Rules
+#
+#RewriteCond %{REQUEST_FILENAME} !-f [OR]
+#RewriteCond %{REQUEST_URI} !^/static/.*
+#RewriteRule ^.*$ index.php [L]
+
