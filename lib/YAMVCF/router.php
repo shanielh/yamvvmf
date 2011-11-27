@@ -81,10 +81,10 @@ class Router {
             
             if (array_key_exists($paramName, $arguments)) {
                 $paramValue = $arguments[$paramName];
-            } elseif ($param->isDefaultValueAvailable) {
+            } elseif ($param->isDefaultValueAvailable()) {
                 $paramValue = $param->getDefaultValue();
             } else {
-                throw new Exception("Argh");
+                throw new Exceptions\PageNotFoundException();
             }
             
             $retVal[$paramName] = $paramValue;

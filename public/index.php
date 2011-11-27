@@ -9,6 +9,12 @@ $relativeUri = Router::GetRelativeActionUri($_SERVER['REQUEST_URI'], $_SERVER['S
 
 $routes = json_decode(file_get_contents('../config/routes.json'), true);
 
-$choosenRoute = Router::Route($relativeUri, $routes);
-
-Router::Bootstrap($choosenRoute);
+try
+{
+    $choosenRoute = Router::Route($relativeUri, $routes);
+    Router::Bootstrap($choosenRoute);
+}
+catch (Exceptions\PageNotFoundException $e)
+{
+    Router::Bootstrap(array('controller' => 'pageNotFound', 'action' => 'index'));
+}
