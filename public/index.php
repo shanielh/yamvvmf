@@ -15,15 +15,7 @@ try
     Router::Bootstrap($choosenRoute);
 }
 // Fallback to 403, 404, 500.
-catch (Exceptions\PageNotFoundException $e)
+catch (Exceptions\RedirectingException $e)
 {
-    Router::Bootstrap(array('controller' => 'PageNotFound', 'action' => 'index'));
-}
-catch (Exceptions\InternalErrorException $e)
-{
-    Router::Bootstrap(array('controller' => 'InternalError', 'action' => 'index'));    
-}
-catch (Exceptions\ForbiddenException $e)
-{
-    Router::Bootstrap(array('controller' => 'Forbidden', 'action' => 'index'));    
+    Router::Bootstrap($e->GetRouterParams());
 }
