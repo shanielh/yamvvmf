@@ -7,6 +7,8 @@ require_once('../lib/YAMVCF/autoloader.php');
 // Bootstrap
 $relativeUri = Router::GetRelativeActionUri($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']);
 
+$a = Config::Debug();
+
 $routes = json_decode(file_get_contents('../config/routes.json'), true);
 
 try

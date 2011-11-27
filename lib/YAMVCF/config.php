@@ -23,7 +23,7 @@ class Config {
     }
     
     public static function GetEnvironment() {
-        return 'dev';
+        return apache_getenv('ENVIRONMENT');
     }
     
     private static function GetConfig() {

@@ -6,12 +6,17 @@ RewriteBase /~shanielharrar/github/yamvcf/public
 #
 # Development Rules
 #
+SetEnv ENVIRONMENT dev
+
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^.*$ index.php [L]
+RewriteCond %{REQUEST_URI} !/static/.*
+RewriteRule ^.*$ Index.php [L]
 
 #
 # Production Rules
 #
+#SetEnv ENVIRONMENT prod
+
 #RewriteCond %{REQUEST_FILENAME} !-f [OR]
 #RewriteCond %{REQUEST_URI} !^/static/.*
 #RewriteRule ^.*$ index.php [L]

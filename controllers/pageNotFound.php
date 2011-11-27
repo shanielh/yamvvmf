@@ -4,7 +4,7 @@ class PageNotFound extends YAMVCF\Controller {
     
     public function index() {
         
-        echo '404 :-)';
+        echo '404 :-)';        
         
     }
     
