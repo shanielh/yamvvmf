@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF;
+namespace YAMVCF\Interfaces;
 
 interface IConfig {
     

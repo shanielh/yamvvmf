@@ -6,7 +6,7 @@ require_once('../lib/YAMVCF/autoloader.php');
 
 $container = Container::getInstance();
 
-$router = $container->getObject('YAMVCF\IRouter');
+$router = $container->getObject('YAMVCF\Interfaces\IRouter');
 
 // Bootstrap
 $relativeUri = $router->GetRelativeActionUri($_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']);

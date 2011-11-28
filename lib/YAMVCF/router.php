@@ -2,11 +2,11 @@
 
 namespace YAMVCF;
 
-class Router implements IRouter {
+class Router implements Interfaces\IRouter {
     
     private $mConfig;
     
-    public function __construct(IConfig $config) {
+    public function __construct(Interfaces\IConfig $config) {
         
         $this->mConfig = $config;
         

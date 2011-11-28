@@ -2,7 +2,7 @@
 
 namespace YAMVCF;
 
-class Config implements IConfig {
+class Config implements Interfaces\IConfig {
     
     private static $config;
     
