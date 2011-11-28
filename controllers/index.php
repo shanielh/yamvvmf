@@ -9,4 +9,10 @@ class Index extends YAMVCF\Controller {
         
     }
     
+    public function main() {
+        
+        echo "We're on main";
+    
+    }
+    
 }

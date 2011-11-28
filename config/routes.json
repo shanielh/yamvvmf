@@ -4,6 +4,11 @@
     "id" : "\\d+",
     "controller" : "index",
     "action" : "getById"
+  },
+  
+  "" : {
+      "controller" : "index",
+      "action" : "main"
   }
 
 }

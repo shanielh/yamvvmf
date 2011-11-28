@@ -15,7 +15,6 @@ class Router implements Interfaces\IRouter {
     public function GetRelativeActionUri($requestUri, $scriptName) {
         
         $baseUri = Router::getBaseUri($scriptName);
-        
         return substr($requestUri, strlen($baseUri) + 1);
         
     }
@@ -39,10 +38,12 @@ class Router implements Interfaces\IRouter {
                 $value = "(?<{$key}>{$value})";
             }
             
-            $uriRegex = '$' . str_replace(array_keys($regexes), array_values($regexes), $uri) . '$';
+            $uriRegex = str_replace(array_keys($regexes), array_values($regexes), $uri);
+            
+            $uriRegex = '/^' . str_replace('/', '\/', $uriRegex) . '$/i';
             
             // Try Regex
-            if (preg_match($uriRegex, $relativeActionUri, $matches)) {
+            if (preg_match($uriRegex, $relativeActionUri, $matches) > 0) {
                 
                 // Fill in request
                 foreach ($matches as $key => $value) {
@@ -52,21 +53,31 @@ class Router implements Interfaces\IRouter {
                     
                     $_REQUEST[$key] = $value;
                 }
+                
+                // Return original params
+                return $params;
             }
-            
-            // Return original params
-            return $params;
         }
-        
+        return false;
     }
     
     // Bootstraps controller and calls for action :-)
     public function Bootstrap($routeParams) {
         
+        if ($routeParams === false) {
+            throw new Exceptions\PageNotFoundException();
+        }
+        
         $controllerName = $routeParams['controller'];
         $actionName = $routeParams['action'];
         
+        if (strcasecmp($controllerName, $actionName) === 0) {
+            // Todo : Add message
+            throw new Exceptions\InternalErrorException("Controller name should not be the same as the action name (Because if they are, The action would become the controller's c'tor)");
+        }
+        
         require_once('../controllers/' . $controllerName . '.php');
+        
         
         $controller = new $controllerName();
         
