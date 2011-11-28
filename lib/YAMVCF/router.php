@@ -86,6 +86,8 @@ class Router implements Interfaces\IRouter {
         // Call it.
         call_user_func_array(array($controller, $actionName), $arguments);
         
+        $controller->render($actionName);
+        
     }
     
     private static function GetArguments($controllerName, $actionName, $arguments) {
