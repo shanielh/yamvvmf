@@ -1,3 +1,6 @@
 [submodule "lib/IoC"]
 	path = lib/IoC
 	url = git://github.com/Elfet/IoC.git
+[submodule "lib/Twig"]
+	path = lib/Twig
+	url = git://github.com/fabpot/Twig.git
