@@ -9,7 +9,7 @@ class AutoLoader {
     {
         
         $formattedClassName = str_replace('\\', DS, $className);
-        $suggestedFileName = __DIR__ . '../' . $formattedClassName . '.php';
+        $suggestedFileName = __DIR__ . '..' . DS . $formattedClassName . '.php';
         if (file_exists($suggestedFileName)) {
             require_once $suggestedFileName;
         }

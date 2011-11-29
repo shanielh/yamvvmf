@@ -11,7 +11,7 @@ class Index extends YAMVCF\Controller {
     
     public function main() {
         
-        $this->addValue('world', 'world!');
+        $this->export('world', 'world!');
     
     }
     

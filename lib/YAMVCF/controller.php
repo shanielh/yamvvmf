@@ -7,16 +7,16 @@ class Controller {
     // Does nothing (Yet).
     // Should be initialized with Twig, etc
     
-    private $mValues = [];
+    private $mExports = [];
     
-    protected function addValue($key, $name) 
+    protected function export($key, $name) 
     {
-        $this->mValues[$key] = $name;
+        $this->mExports[$key] = $name;
     }
     
-    public function GetValues()
+    public function GetExports()
     {
-        return $this->mValues;
+        return $this->mExports;
     }
         
 }

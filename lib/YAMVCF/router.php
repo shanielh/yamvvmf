@@ -95,7 +95,6 @@ class Router implements Interfaces\IRouter
         $actionName = $routeParams['action'];
         
         if (strcasecmp($controllerName, $actionName) === 0) {
-            // Todo : Add message
             $error = "Controller name should not be the same as the action name " .
                      "(Because if they are, The action would become the controller's c'tor)"
             throw new Exceptions\InternalErrorException($error);
@@ -116,7 +115,7 @@ class Router implements Interfaces\IRouter
         $viewName = 'YAMVCF\\Views\\' . $routeParams['format'] . 'View';
         $view = new $viewName($controllerName, $actionName);
         
-        $view->render($controller->GetValues());
+        $view->render($controller->GetExports());
         
     }
     
