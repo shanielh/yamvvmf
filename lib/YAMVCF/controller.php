@@ -9,11 +9,13 @@ class Controller {
     
     private $mValues = [];
     
-    protected function addValue($key, $name) {
+    protected function addValue($key, $name) 
+    {
         $this->mValues[$key] = $name;
     }
     
-    public function GetValues() {
+    public function GetValues()
+    {
         return $this->mValues;
     }
         

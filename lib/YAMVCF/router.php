@@ -2,39 +2,38 @@
 
 namespace YAMVCF;
 
-class Router implements Interfaces\IRouter {
+class Router implements Interfaces\IRouter 
+{
     
     private $mConfig;
     
-    public function __construct(Interfaces\IConfig $config) {
+    private const FORMAT_REGEX = "/(.*)\.(HTML|JSON|XML)$/i";
+    
+    public function __construct(Interfaces\IConfig $config) 
+    {
         
         $this->mConfig = $config;
         
     }
     
-    public function GetRelativeActionUri($requestUri, $scriptName) {
+    public function GetRelativeActionUri($requestUri, $scriptName) 
+    {
         
         $baseUri = Router::getBaseUri($scriptName);
         return substr($requestUri, strlen($baseUri) + 1);
         
     }
     
-    private function GetFormat(&$relativeActionUri) {
-        
-        if ($relativeActionUri) {
-            
-        }
-        
-    }
-    
-    private function GetBaseUri($scriptName) {
+    private function GetBaseUri($scriptName) 
+    {
         
         return dirname($scriptName);
     }
     
-    public function Route($relativeActionUri) {
+    public function Route($relativeActionUri) 
+    {
         
-        if (preg_match("/(.*)\.(HTML|JSON|XML)$/i", $relativeActionUri, $matches) > 0) {
+        if (preg_match(self::FORMAT_REGEX, $relativeActionUri, $matches) > 0) {
             $format = strtoupper($matches[2]);
             $relativeActionUri = $matches[1];
         } else {
@@ -44,7 +43,8 @@ class Router implements Interfaces\IRouter {
         foreach ($this->mConfig->getRoutes() as $uri => $params) {
             
             // Clones the params to new array
-            $formats = array_key_exists('formats', $params) ? $params['formats'] : array("HTML");
+            $formats = array_key_exists('formats', $params) ? 
+                       $params['formats'] : array("HTML");
             
             if (!in_array($format, $formats)) {
                 continue;
@@ -84,7 +84,8 @@ class Router implements Interfaces\IRouter {
     }
     
     // Bootstraps controller and calls for action :-)
-    public function Bootstrap($routeParams) {
+    public function Bootstrap($routeParams) 
+    {
         
         if ($routeParams === false) {
             throw new Exceptions\PageNotFoundException();
@@ -95,7 +96,9 @@ class Router implements Interfaces\IRouter {
         
         if (strcasecmp($controllerName, $actionName) === 0) {
             // Todo : Add message
-            throw new Exceptions\InternalErrorException("Controller name should not be the same as the action name (Because if they are, The action would become the controller's c'tor)");
+            $error = "Controller name should not be the same as the action name " .
+                     "(Because if they are, The action would become the controller's c'tor)"
+            throw new Exceptions\InternalErrorException($error);
         }
         
         require_once('../controllers/' . $controllerName . '.php');
@@ -117,7 +120,8 @@ class Router implements Interfaces\IRouter {
         
     }
     
-    private static function GetArguments($controllerName, $actionName, $arguments) {
+    private static function GetArguments($controllerName, $actionName, $arguments) 
+    {
         
         $reflector = new \ReflectionClass($controllerName);
         $methodReflector = $reflector->getMethod($actionName);

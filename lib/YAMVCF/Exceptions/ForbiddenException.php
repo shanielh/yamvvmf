@@ -6,8 +6,9 @@ class ForbiddenException extends RedirectingException
 {
     
     // Use it when you need it :-)
-    public function __construct() {
-        parent::__construct('Forbidden','index');
+    public function __construct() 
+    {
+        parent::__construct('Forbidden', 'index');
         
     }
     

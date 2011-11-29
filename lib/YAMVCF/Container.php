@@ -15,7 +15,8 @@ class Container {
     
     private $container;
     
-    private function __construct() {
+    private function __construct() 
+    {
     
         $this->container = \IoC\Container::getInstance();
         $this->container->register(new Config());
@@ -26,7 +27,8 @@ class Container {
     }
     
     // Loads twig into container with the name 'Twig'
-    private function initTwig() {
+    private function initTwig() 
+    {
         
         // Load Twig Library
         require_once dirname(__FILE__) . '/../Twig/lib/Twig/Autoloader.php';
@@ -39,7 +41,8 @@ class Container {
 
     }
     
-    public static function getInstance() {
+    public static function getInstance() 
+    {
         
         if (self::$instance === null) {
             self::$instance = new Container();

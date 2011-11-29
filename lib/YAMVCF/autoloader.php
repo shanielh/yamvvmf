@@ -1,16 +1,17 @@
 <?php
+define(DS, DIRECTORY_SEPARATOR);
 
 namespace YAMVCF;
 
 class AutoLoader {
     
-    public static function Load($className) {
+    public static function load($className)
+    {
         
-        $suggestedFileName = '../lib/' . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
+        $formattedClassName = str_replace('\\', DS, $className);
+        $suggestedFileName = __DIR__ . '../' . $formattedClassName . '.php';
         if (file_exists($suggestedFileName)) {
             require_once $suggestedFileName;
-        } else {
-            //var_dump('file not found ' . $suggestedFileName . ' (class : ' . $className . ' )');
         }
         
     }
