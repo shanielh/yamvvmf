@@ -13,18 +13,8 @@ class Controller {
         $this->mValues[$key] = $name;
     }
     
-    public function getValues() {
+    public function GetValues() {
         return $this->mValues;
     }
-    
-    public function render($actionName) {
         
-        // Get twig :
-        $twig = Container::getInstance()->getObject('Twig');
-        $templateName = get_class($this) . '/' . $actionName . '.twig';
-        echo $twig->render($templateName, $this->getValues());
-    }
-    
-    
- 
 }

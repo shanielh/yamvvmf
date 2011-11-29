@@ -3,12 +3,15 @@
   "index/id" : {
     "id" : "\\d+",
     "controller" : "index",
-    "action" : "getById"
+    "action" : "getById",
+    "formats" : ["HTML","XML","JSON"]
   },
   
   "" : {
       "controller" : "index",
-      "action" : "main"
+      "action" : "main",
+      "__comments" : "when not specified, valid formats are only html",
+      "formats" : ["HTML","JSON"]
   }
 
 }

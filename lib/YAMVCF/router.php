@@ -19,16 +19,37 @@ class Router implements Interfaces\IRouter {
         
     }
     
-    public function getBaseUri($scriptName) {
+    private function GetFormat(&$relativeActionUri) {
+        
+        if ($relativeActionUri) {
+            
+        }
+        
+    }
+    
+    private function GetBaseUri($scriptName) {
         
         return dirname($scriptName);
     }
     
     public function Route($relativeActionUri) {
         
+        if (preg_match("/(.*)\.(HTML|JSON|XML)$/i", $relativeActionUri, $matches) > 0) {
+            $format = strtoupper($matches[2]);
+            $relativeActionUri = $matches[1];
+        } else {
+            $format = "HTML";
+        }
+        
         foreach ($this->mConfig->getRoutes() as $uri => $params) {
             
             // Clones the params to new array
+            $formats = array_key_exists('formats', $params) ? $params['formats'] : array("HTML");
+            
+            if (!in_array($format, $formats)) {
+                continue;
+            }
+            
             $regexes = $params;
             unset($regexes['controller']);
             unset($regexes['action']);
@@ -55,6 +76,7 @@ class Router implements Interfaces\IRouter {
                 }
                 
                 // Return original params
+                $params['format'] = $format;
                 return $params;
             }
         }
@@ -86,7 +108,12 @@ class Router implements Interfaces\IRouter {
         // Call it.
         call_user_func_array(array($controller, $actionName), $arguments);
         
-        $controller->render($actionName);
+        
+        // Create view and render.
+        $viewName = 'YAMVCF\\Views\\' . $routeParams['format'] . 'View';
+        $view = new $viewName($controllerName, $actionName);
+        
+        $view->render($controller->GetValues());
         
     }
     
