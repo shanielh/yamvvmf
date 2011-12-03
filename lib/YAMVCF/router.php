@@ -105,7 +105,7 @@ class Router implements Interfaces\IRouter
         
         $controller = new $controllerName();
         
-        $arguments = Router::GetArguments($controllerName, $actionName, $_REQUEST);
+        $arguments = Controller::GetArguments($controllerName, $actionName, $_REQUEST);
         
         // Call it.
         call_user_func_array(array($controller, $actionName), $arguments);
@@ -116,32 +116,6 @@ class Router implements Interfaces\IRouter
         $view = new $viewName($controllerName, $actionName);
         
         $view->render($controller->GetExports());
-        
-    }
-    
-    private static function GetArguments($controllerName, $actionName, $arguments) 
-    {
-        
-        $reflector = new \ReflectionClass($controllerName);
-        $methodReflector = $reflector->getMethod($actionName);
-        
-        $retVal = array();
-        
-        foreach ($methodReflector->getParameters() as $param) {
-            $paramName = $param->getName();
-            
-            if (array_key_exists($paramName, $arguments)) {
-                $paramValue = $arguments[$paramName];
-            } elseif ($param->isDefaultValueAvailable()) {
-                $paramValue = $param->getDefaultValue();
-            } else {
-                throw new Exceptions\PageNotFoundException();
-            }
-            
-            $retVal[$paramName] = $paramValue;
-        }
-        
-        return $retVal;
         
     }
     
