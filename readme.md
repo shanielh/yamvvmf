@@ -3,15 +3,17 @@ YAMVVMF is Yet another (simple!) model-view-view model framework for PHP.
 I've desided to write it when I wanted to open a blog and looked over for a framework to start with, I saw that nothing is really simple as much as I want.
 
 So i've written YAMVVMF, It contains : 
-*    Routes
-*    Controllers
-*    Simple Configuration
-*    Views (JSON -> Json Decode, HTML -> Twig)
-*    IoC Containers (Based on https://github.com/Elfet/IoC)
+
+-    Routes
+-    Controllers
+-    Simple Configuration
+-    Views (JSON -> Json Decode, HTML -> Twig)
+-    IoC Containers (Based on https://github.com/Elfet/IoC)
  
 I do want to add : 
-*    Unit tests
-*    Restless routes
+
+-    Unit tests
+-    Restless routes
  
 How to use it? Add routes :
 
