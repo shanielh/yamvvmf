@@ -7,7 +7,7 @@ class Router implements Interfaces\IRouter
     
     private $mConfig;
     
-    private const FORMAT_REGEX = "/(.*)\.(HTML|JSON|XML)$/i";
+    const FORMAT_REGEX = "/(.*)\.(HTML|JSON|XML)$/i";
     
     public function __construct(Interfaces\IConfig $config) 
     {
@@ -96,7 +96,7 @@ class Router implements Interfaces\IRouter
         
         if (strcasecmp($controllerName, $actionName) === 0) {
             $error = "Controller name should not be the same as the action name " .
-                     "(Because if they are, The action would become the controller's c'tor)"
+                     "(Because if they are, The action would become the controller's c'tor)";
             throw new Exceptions\InternalErrorException($error);
         }
         
