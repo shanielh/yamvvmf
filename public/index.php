@@ -1,13 +1,13 @@
 <?php
 
-namespace YAMVCF;
+namespace YAMVVMF;
 
 // Use the autoloader
-require_once '../lib/YAMVCF/autoloader.php';
+require_once '../lib/YAMVVMF/autoloader.php';
 
 $container = Container::getInstance();
 
-$router = $container->getObject('YAMVCF\Interfaces\IRouter');
+$router = $container->getObject('YAMVVMF\Interfaces\IRouter');
 
 // Bootstrap
 $requestUri = $_SERVER['REQUEST_URI'];

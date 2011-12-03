@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF;
+namespace YAMVVMF;
 
 class Router implements Interfaces\IRouter 
 {
@@ -112,7 +112,7 @@ class Router implements Interfaces\IRouter
         
         
         // Create view and render.
-        $viewName = 'YAMVCF\\Views\\' . $routeParams['format'] . 'View';
+        $viewName = 'YAMVVMF\\Views\\' . $routeParams['format'] . 'View';
         $view = new $viewName($controllerName, $actionName);
         
         $view->render($controller->GetExports());

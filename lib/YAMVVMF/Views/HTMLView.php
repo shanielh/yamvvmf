@@ -1,8 +1,8 @@
 <?php
 
-namespace YAMVCF\Views;
-use \YAMVCF\Interfaces\IView as IView;
-use \YAMVCF\Container as Container;
+namespace YAMVVMF\Views;
+use \YAMVVMF\Interfaces\IView as IView;
+use \YAMVVMF\Container as Container;
 
 class HTMLView implements IView 
 {
@@ -20,10 +20,10 @@ class HTMLView implements IView
         $this->mActionName = $actionName;
      
         // Load Twig Library
-        require_once dirname(__FILE__) . '/../../Twig/lib/Twig/Autoloader.php';
+        require_once LIB . '/Twig/lib/Twig/Autoloader.php';
         \Twig_Autoloader::Register();
         
-        $loader = new \Twig_Loader_Filesystem(dirname(__FILE__) . '/../../../views/');
+        $loader = new \Twig_Loader_Filesystem(COMPLEX . '/views/');
         $this->mTwig = new \Twig_Environment($loader, array('debug' => true));
      
     }

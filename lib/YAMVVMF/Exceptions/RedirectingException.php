@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF\Exceptions;
+namespace YAMVVMF\Exceptions;
 
 class RedirectingException extends \Exception 
 {

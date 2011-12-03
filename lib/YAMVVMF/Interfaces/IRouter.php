@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF\Interfaces;
+namespace YAMVVMF\Interfaces;
 
 interface IRouter {
     

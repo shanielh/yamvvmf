@@ -1,6 +1,6 @@
 <?php
 
-class PageNotFound extends YAMVCF\Controller {
+class PageNotFound extends YAMVVMF\Controller {
     
     public function index() {
         

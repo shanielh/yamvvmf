@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF;
+namespace YAMVVMF;
 
 // Container implementation for self usage.
 class Container {
@@ -14,7 +14,7 @@ class Container {
         $this->initIoc();
         $this->container = \IoC\Container::getInstance();
         $this->container->register(new Config());
-        $this->container->register('YAMVCF\Router');
+        $this->container->register('YAMVVMF\Router');
         
     }
     

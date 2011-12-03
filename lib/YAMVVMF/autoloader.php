@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF;
+namespace YAMVVMF;
 
 // Define some constants
 define('DS', DIRECTORY_SEPARATOR);
@@ -23,4 +23,4 @@ class AutoLoader {
     
 }
 
-spl_autoload_register('YAMVCF\AutoLoader::load');
+spl_autoload_register('YAMVVMF\AutoLoader::load');

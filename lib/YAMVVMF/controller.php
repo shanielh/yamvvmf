@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF;
+namespace YAMVVMF;
 
 class Controller {
     

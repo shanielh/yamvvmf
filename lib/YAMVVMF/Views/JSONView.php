@@ -1,7 +1,7 @@
 <?php
 
-namespace YAMVCF\Views;
-use YAMVCF\Interfaces\IView as IView;
+namespace YAMVVMF\Views;
+use YAMVVMF\Interfaces\IView as IView;
 
 class JSONView implements IView {
     

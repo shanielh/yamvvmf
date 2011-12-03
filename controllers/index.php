@@ -1,6 +1,6 @@
 <?php
 
-class Index extends YAMVCF\Controller {
+class Index extends YAMVVMF\Controller {
     
     public function getById($id) {
         

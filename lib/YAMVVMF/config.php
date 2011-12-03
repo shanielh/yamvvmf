@@ -1,6 +1,6 @@
 <?php
 
-namespace YAMVCF;
+namespace YAMVVMF;
 
 class Config implements Interfaces\IConfig 
 {
