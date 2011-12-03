@@ -11,22 +11,30 @@ class HTMLView implements IView
     
     private $mActionName;
     
+    private $mTwig;
+    
     public function __construct($controllerName, $actionName) 
     {
         
         $this->mControllerName = $controllerName;
         $this->mActionName = $actionName;
+     
+        // Load Twig Library
+        require_once dirname(__FILE__) . '/../../Twig/lib/Twig/Autoloader.php';
+        \Twig_Autoloader::Register();
         
+        $loader = new \Twig_Loader_Filesystem(dirname(__FILE__) . '/../../../views/');
+        $this->mTwig = new \Twig_Environment($loader, array('debug' => true));
+     
     }
     
     public function Render($values) 
     {
         
-        $twig = Container::getInstance()->getObject('Twig');
         $templateName = $this->mControllerName . '/' . 
                         $this->mActionName . '.twig';
         
-        echo $twig->render($templateName, $values);
+        echo $this->mTwig->render($templateName, $values);
         
     }
     
