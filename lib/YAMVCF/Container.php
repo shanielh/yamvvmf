@@ -2,12 +2,6 @@
 
 namespace YAMVCF;
 
-// Load IoC Library
-require_once dirname(__FILE__) . '/../IoC/IoC/ClassLoader.php';
-
-$classLoader = new \IoC\ClassLoader('IoC', __DIR__ . '/../IoC/');
-$classLoader->register();
-
 // Container implementation for self usage.
 class Container {
     
@@ -17,11 +11,21 @@ class Container {
     
     private function __construct() 
     {
-    
+        $this->initIoc();
         $this->container = \IoC\Container::getInstance();
         $this->container->register(new Config());
         $this->container->register('YAMVCF\Router');
         
+    }
+    
+    private function initIoc() 
+    {
+        // Load IoC Library
+        require_once LIB . 'IoC' . DS . 'IoC' . DS . 'ClassLoader.php';
+        
+        $classLoader = new \IoC\ClassLoader('IoC', LIB . 'IoC');
+        $classLoader->register();
+
     }
     
     public static function getInstance() 

@@ -1,7 +1,11 @@
 <?php
+
 namespace YAMVCF;
 
+// Define some constants
 define('DS', DIRECTORY_SEPARATOR);
+define('LIB', __DIR__ . DS . '..' . DS );
+define('COMPLEX', LIB . DS . '..' . DS );
 
 class AutoLoader {
     
@@ -9,7 +13,7 @@ class AutoLoader {
     {
         
         $formattedClassName = str_replace('\\', DS, $className);
-        $suggestedFileName = __DIR__ . DS .'..' . DS . $formattedClassName . '.php';
+        $suggestedFileName = LIB . $formattedClassName . '.php';
         
         if (file_exists($suggestedFileName)) {
             require_once $suggestedFileName;

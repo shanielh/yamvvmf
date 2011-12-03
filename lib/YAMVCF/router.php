@@ -100,7 +100,7 @@ class Router implements Interfaces\IRouter
             throw new Exceptions\InternalErrorException($error);
         }
         
-        require_once('../controllers/' . $controllerName . '.php');
+        require_once(COMPLEX . DS . 'controllers' . DS . $controllerName . '.php');
         
         
         $controller = new $controllerName();
